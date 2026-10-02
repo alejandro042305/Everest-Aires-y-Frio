@@ -1,0 +1,5 @@
+_generador/
+__pycache__/
+*.py[cod]
+contenido-sitio-everest.md
+assets/img/fotos/FOTOS.md
