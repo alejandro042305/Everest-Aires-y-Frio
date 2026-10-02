@@ -170,22 +170,22 @@
         toggle.focus();
       }
     });
-    window.matchMedia("(min-width: 1024px)").addEventListener("change", function (mq) {
+    window.matchMedia("(min-width: 901px)").addEventListener("change", function (mq) {
       if (mq.matches) { setOpen(false); nav.style.top = ""; nav.style.maxHeight = ""; }
     });
   }
 
   /* ---------- Menú desplegable (Chillers, Cuartos fríos, Aires, Servicios) ----------
-     Escritorio (≥1024px): abre al pasar el mouse, con clic y con teclado.
+     Escritorio (≥901px): abre al pasar el mouse, con clic y con teclado.
        - Botón: Enter/Espacio abre o cierra, Flecha abajo abre y enfoca el primer enlace.
        - Panel: Flechas arriba/abajo, Inicio/Fin para moverse; Esc cierra y vuelve al botón.
        - Flechas izquierda/derecha en la barra: pasan al ítem vecino.
-     Móvil: el mismo botón funciona como acordeón dentro del panel del menú.            */
+     En móvil y tablet (≤900px) el menú se reemplaza por la barra de pestañas inferior. */
 
   function initDropdowns() {
     var items = Array.prototype.slice.call(document.querySelectorAll("[data-dropdown]"));
     if (!items.length) return;
-    var desktop = window.matchMedia("(min-width: 1024px)");
+    var desktop = window.matchMedia("(min-width: 901px)");
     var canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
     var topLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-list > .nav-item > .nav-link"));
 
