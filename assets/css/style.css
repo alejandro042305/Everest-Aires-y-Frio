@@ -42,7 +42,7 @@
   --header-h: 68px;
   --gutter: 20px;
   --container: 1160px;
-  --section-y: clamp(72px, 10vw, 136px);
+  --section-y: clamp(56px, 10vw, 136px);
   --measure: 60ch;
 
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -172,6 +172,7 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 @media (min-width: 960px) { .split { grid-template-columns: 1fr 1fr; } }
 
 .prose p { color: var(--muted); max-width: var(--measure); }
+.prose .eyebrow, .section-alt .prose .eyebrow { color: var(--blue); }
 .prose p + p { margin-top: 16px; }
 .prose h2 + p { margin-top: 18px; }
 .prose-center { max-width: var(--measure); margin: 0 auto clamp(48px, 6vw, 72px); text-align: center; }
@@ -233,31 +234,6 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 .link-arrow .icon { width: 18px; height: 18px; transition: transform 200ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
   .link-arrow:hover .icon { transform: translateX(3px); }
-}
-
-/* ---------- Barra superior (discreta) ---------- */
-
-.topbar { background: var(--navy-deep); color: var(--on-navy); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; }
-.topbar-inner { display: flex; align-items: center; justify-content: center; gap: 16px; min-height: 32px; }
-.topbar p { display: inline-flex; align-items: center; gap: 6px; }
-.topbar .icon { width: 14px; height: 14px; color: var(--sky); }
-.topbar-actions { display: none; gap: 4px; }
-.topbar-actions a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 32px;
-  padding: 0 10px;
-  color: var(--white);
-  text-decoration: none;
-  font-variant-numeric: tabular-nums;
-}
-@media (min-width: 768px) {
-  .topbar-inner { justify-content: space-between; }
-  .topbar-actions { display: flex; }
-}
-@media (hover: hover) and (pointer: fine) {
-  .topbar-actions a:hover { color: var(--sky); }
 }
 
 /* ---------- Header: blanco y limpio ---------- */
@@ -424,6 +400,12 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
 /* Portada del inicio: el aire y la cara del técnico están arriba en la foto, el recorte se ancla arriba */
 .hero-home .hero-photo img { object-position: 50% 18%; }
+/* Portada de Chillers: el recorte sube un poco para que se vean los ventiladores de los equipos */
+.hero-photo img[src*="hero-chillers"] { object-position: 50% 40%; }
+/* Portada de Cuartos fríos: la cabeza del trabajador está arriba en la foto */
+.hero-photo img[src*="hero-cuartos-frios"] { object-position: 50% 25%; }
+/* Portada de Instalación: las cabezas de los técnicos están arriba en la foto */
+.hero-photo img[src*="hero-instalacion"] { object-position: 50% 12%; }
 /* <picture> (versión celular) no debe alterar el recorte de la foto */
 .hero-photo picture, .col-photo picture, .pcard-media picture, .media-frame picture, .person-photo picture { display: contents; }
 .hero-home .hero-photo { height: 120px; }
@@ -447,7 +429,7 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 479px) { .hero-body .btn-row { width: 100%; } }
 /* Móvil: WhatsApp y Llamar justo debajo del título, visibles sin hacer scroll */
 @media (max-width: 767px) {
-  .hero-body > .lead, .hero-body > .trust-list, .hero-body > .hero-facts, .hero-body > .hero-notes { order: 1; }
+  .hero-body > .lead, .hero-body > .trust-list, .hero-body > .hero-facts { order: 1; }
   .hero-body h1 { font-size: clamp(1.625rem, 1.2rem + 2.4vw, 2rem); }
   .hero-body .breadcrumb { margin-bottom: 6px; }
   .hero-body .eyebrow { margin-bottom: 8px; }
@@ -473,8 +455,6 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 .trust-list li { display: inline-flex; align-items: center; gap: 8px; }
 .trust-list .icon { width: 18px; height: 18px; color: var(--sky); stroke-width: 2.5; }
 
-.hero-notes { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 24px; margin-top: 14px; font-size: 0.875rem; color: var(--muted); }
-.hero-notes strong { color: var(--navy); }
 
 /* Datos rápidos (páginas de línea) */
 .hero-facts { display: flex; flex-wrap: wrap; justify-content: center; margin: 28px 0 0; }
@@ -810,6 +790,8 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 .pcard:target, .pcard:has(> .pcard-anchor:target) { outline: 2px solid var(--sky); outline-offset: 12px; }
 .pcard-media { width: 100%; overflow: hidden; aspect-ratio: 4 / 3; background: var(--ice); }
 .pcard-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms var(--ease-out); }
+/* Ilustración del equipo (mientras llega la foto real): completa, sin recortar, sobre fondo ice */
+.pcard-media .pcard-illus { object-fit: contain; padding: 18px 28px; background: linear-gradient(180deg, #EAF5FC 0%, var(--ice) 100%); }
 .pcard-body { display: flex; flex-direction: column; align-items: center; flex: 1; width: 100%; padding-top: 22px; }
 .pcard-cap { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 2px 8px; color: var(--navy); font-variant-numeric: tabular-nums; }
 .pcard-num { font-size: clamp(2rem, 1.7rem + 1.2vw, 2.625rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
@@ -1005,6 +987,19 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 .legal h2:first-of-type { margin-top: 0; }
 .legal p, .legal li { margin-top: 12px; color: var(--muted); }
 .legal ul { list-style: disc; padding-left: 22px; }
+.legal-content { max-width: 68ch; margin-inline: auto; }
+.legal ol { list-style: decimal; padding-left: 22px; }
+.legal li::marker { color: var(--blue); }
+.legal strong { color: var(--navy); }
+.legal-updated {
+  display: inline-block;
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--sky);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--navy);
+}
 
 /* ---------- Footer (navy, con onda arriba) ---------- */
 
@@ -1172,6 +1167,70 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
   .wa-float:hover .wa-float-label, .call-float:hover .float-label { opacity: 1; transform: none; }
 }
 
+/* =========================================================================
+   AJUSTES MÓVIL: versión más compacta (escritorio no cambia)
+   ========================================================================= */
+@media (max-width: 767px) {
+  .section-head { margin-bottom: 32px; }
+
+  /* Servicios: el principal a todo el ancho; los otros cuatro en cuadrícula 2 × 2 */
+  .cols-services { grid-template-columns: 1fr 1fr; gap: 36px 16px; }
+  .cols-services > .col-featured { grid-column: 1 / -1; }
+  .cols-services > .col:not(.col-featured) .col-photo { margin-bottom: 14px; }
+  .cols-services > .col:not(.col-featured) h3 { font-size: 1rem; text-underline-offset: 4px; }
+  .cols-services > .col:not(.col-featured) > p { margin-top: 8px; font-size: 0.875rem; line-height: 1.5; }
+
+  /* Líneas de producto: filas con foto cuadrada a la izquierda */
+  .cols:has(> .col-anchor) { gap: 28px; }
+  .col-anchor .col {
+    display: grid;
+    grid-template-columns: 128px 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 16px;
+    align-items: center;
+    text-align: left;
+  }
+  .col-anchor .col-photo { grid-row: 1 / 4; margin: 0; aspect-ratio: 1; }
+  .col-anchor .col h3 { font-size: 1.0625rem; align-self: end; }
+  .col-anchor .col > p { max-width: none; margin-top: 4px; font-size: 0.9375rem; line-height: 1.5; }
+  .col-anchor .col .link-arrow { display: inline; min-height: 0; margin-top: 0; padding-block: 8px; align-self: start; font-size: 0.9375rem; line-height: 1.4; }
+  .col-anchor .col .link-arrow .icon { display: inline-block; vertical-align: -3px; margin-left: 4px; }
+
+  /* Por qué elegirnos / valores / beneficios: dos columnas */
+  .values, .benefits { gap: 28px 16px; }
+  .values > .feature { flex: 0 1 calc((100% - 16px) / 2); }
+  .benefits { grid-template-columns: 1fr 1fr; }
+  .values > .feature h3, .benefits > .feature h3 { font-size: 1rem; }
+  .values > .feature p, .benefits > .feature p { font-size: 0.875rem; line-height: 1.5; }
+  .prose-center { margin-bottom: 40px; }
+
+  /* Quién te atiende */
+  .person-photo img { width: 200px; height: 200px; }
+
+  /* Footer: Servicios y Productos lado a lado */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; padding-bottom: 32px; }
+  .footer-brand, .footer-grid > div:last-child { grid-column: 1 / -1; }
+  .footer-logo img { height: 64px; }
+  .footer-brand p { margin-top: 14px; }
+
+  /* Equipos (Chillers y Aires): tarjetas en dos columnas */
+  .pgrid:not(.pgrid-2) { grid-template-columns: 1fr 1fr; gap: 36px 14px; }
+  .pgrid:not(.pgrid-2) .pcard-body { padding-top: 14px; }
+  .pgrid:not(.pgrid-2) .pcard-num { font-size: 1.625rem; }
+  .pgrid:not(.pgrid-2) .pcard-cap-range .pcard-num { font-size: 1.0625rem; }
+  .pgrid:not(.pgrid-2) .pcard-unit { font-size: 0.6875rem; }
+  .pgrid:not(.pgrid-2) .pcard h3 { margin-top: 8px; font-size: 0.9375rem; text-underline-offset: 4px; }
+  .pgrid:not(.pgrid-2) .pcard-alias { margin-top: 6px; font-size: 0.75rem; }
+  .pgrid:not(.pgrid-2) .pcard-ideal { margin-top: 6px; font-size: 0.8125rem; line-height: 1.45; }
+  .pgrid:not(.pgrid-2) .pcard-body > :nth-last-child(2) { margin-bottom: 14px; }
+  .pgrid:not(.pgrid-2) .pcard .btn { min-height: 44px; padding: 0 10px; font-size: 0.875rem; }
+  .pgrid:not(.pgrid-2) .pcard-media .pcard-illus { padding: 10px 12px; }
+}
+@media (max-width: 900px) {
+  /* Que los botones flotantes no tapen el final del footer */
+  .footer-bottom { padding-right: 76px; }
+}
+
 /* ---------- Movimiento: solo fundido corto al aparecer ---------- */
 
 .js .reveal { opacity: 0; transition: opacity 500ms var(--ease-out) var(--delay, 0ms); }
@@ -1217,5 +1276,5 @@ ul, ol.steps, ol.breadcrumb { margin: 0; padding: 0; list-style: none; }
 }
 
 @media print {
-  .site-header, .topbar, .tabbar, .wa-float, .call-float, .cta-section, .wave { display: none !important; }
+  .site-header, .tabbar, .wa-float, .call-float, .cta-section, .wave { display: none !important; }
 }

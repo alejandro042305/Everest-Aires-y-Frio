@@ -47,6 +47,11 @@ window.EVEREST_CONFIG = {
   TEXTO_MISION: "PENDIENTE",
   TEXTO_VISION: "PENDIENTE",
 
+  // Datos legales (se muestran en las políticas de privacidad y de garantía).
+  RAZON_SOCIAL: "PENDIENTE",   // Ej: "Everest Aires y Frío S.A.S."
+  NIT: "PENDIENTE",            // Ej: "901.234.567-8"
+  DIRECCION: "PENDIENTE",      // Ej: "Calle 00 # 00-00, Bogotá"
+
   // Mensaje por defecto al abrir WhatsApp (cada botón puede tener el suyo).
   WHATSAPP_MENSAJE: "Hola, vengo de la página web de Everest y quiero información.",
 
